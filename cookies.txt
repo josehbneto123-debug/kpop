@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+photocardkpopshop.lovable.app	TRUE	/	FALSE	1999999999	__cf_bm	wUtJ37luqx.Iab8xo69fVT18BcAQ2Lerm7mnJt6Kvf8-1790296633.7174718-1.0.1.1-A8_unBJNxOUyuQzIEiSpesssfTul37ANW1RzAJSbPTj_16oVuMaUKrUxSLJAniXWk0vyGthcn13z_gwsABnhuI5GkrFxL7uy.rRde_peHduy0QR5_O9srklrxDI.njOU
+lovable.app	TRUE	/	FALSE	1999999999	SameSite	None
+
