@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Bumps — Kit de Alfabetização</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#fbeee8;--ink:#2a2226;--muted:#6e6168;--green:#1f9d74;--pink:#ff5d87;--border:#e8e3e6;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:15px;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+h1,h2{font-family:Fredoka,Nunito,sans-serif;margin:0}
+h1{font-size:1.9rem}
+.sub{color:var(--muted);margin:6px 0 24px}
+.grid{display:grid;gap:24px;grid-template-columns:1fr}
+@media(min-width:960px){.grid{grid-template-columns:420px 1fr}}
+.panel{background:#fff;border-radius:22px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.panel h2{font-size:1.15rem;margin-bottom:12px}
+/* simulação do checkout */
+.sim{position:sticky;top:16px;align-self:start}
+.bump{display:flex;gap:12px;border:2px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px;background:#f9fafb;cursor:pointer;transition:border-color .15s,background .15s}
+.bump.on{border-color:var(--green);background:#effaf5}
+.bump input{width:20px;height:20px;margin-top:4px;accent-color:var(--green);flex:0 0 auto}
+.bump img{width:52px;height:52px;border-radius:10px;flex:0 0 auto}
+.bump .t{font-weight:800;font-size:.98rem;line-height:1.25}
+.bump .d{font-size:.86rem;color:#4b4b4b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px}
+.bump .d b{color:var(--ink)}
+.bump .row{display:flex;align-items:center;gap:12px;margin-top:4px;flex-wrap:wrap}
+.bump .old{color:#9a9a9a;text-decoration:line-through;font-size:.85rem;display:block}
+.bump .new{color:var(--green);font-weight:800;font-size:1.05rem}
+.bump .cta{border:1.5px solid var(--green);color:var(--green);border-radius:8px;padding:4px 10px;font-weight:800;font-size:.8rem;background:#fff}
+.bump.on .cta{background:var(--green);color:#fff}
+.total{margin-top:14px;border-top:2px dashed var(--border);padding-top:12px;display:grid;gap:4px;font-weight:700}
+.total .big{font-family:Fredoka,sans-serif;font-size:1.5rem;color:var(--green)}
+.note{font-size:.82rem;color:var(--muted)}
+/* fichas para copiar */
+.card{background:#fff;border-radius:22px;padding:20px;box-shadow:0 8px 24px rgba(0,0,0,.06);margin-bottom:18px}
+.card header{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.card header img{width:72px;height:72px;border-radius:14px}
+.card header h2{font-size:1.2rem}
+.card header .pos{display:inline-block;background:var(--ink);color:#fff;font-weight:800;font-size:.75rem;border-radius:8px;padding:2px 8px;margin-bottom:4px}
+.f{margin-top:10px}
+.f label{display:flex;justify-content:space-between;align-items:center;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.f .val{background:#f7f3f5;border-radius:12px;padding:10px 12px;white-space:pre-wrap;font-weight:600}
+.copy{all:unset;cursor:pointer;font-size:.75rem;font-weight:800;color:var(--pink);padding:2px 8px;border-radius:8px}
+.copy:hover{background:#ffe1e6}
+.copy:focus-visible{outline:2px solid var(--ink)}
+.why{margin-top:12px;font-size:.88rem;background:#fff6dc;border-radius:12px;padding:10px 12px}
+.prices{display:flex;gap:10px;flex-wrap:wrap}
+.prices .f{flex:1 1 140px}
+.tips{background:#fff;border-radius:22px;padding:20px 22px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.tips h2{font-size:1.2rem;margin-bottom:8px}
+.tips li{margin:6px 0}
+.warn{background:#ffe1e6;border-radius:16px;padding:14px 16px;margin-bottom:18px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🎁 Order Bumps do Kit de Alfabetização</h1>
+  <p class="sub">À esquerda, como fica no checkout (clique para marcar). À direita, os textos prontos para cadastrar na ggcheckout, na ordem certa.</p>
+
+  <div class="warn">⚠️ Antes de cadastrar: só ofereça os materiais que você <b>realmente tem para entregar</b> (e com licença de revenda, se forem PLR). Ajuste os números das capinhas e dos textos ("+267 atividades", "10 historinhas" etc.) para bater com o conteúdo real de cada PDF.</div>
+
+  <div class="grid">
+    <div class="sim panel">
+      <h2>Prévia no checkout</h2>
+      <div id="sim"></div>
+      <div class="total">
+        <span>Pacote Premium: R$ 29,90</span>
+        <span>Ticket desta compra: <span class="big" id="tot">R$ 29,90</span></span>
+        <span class="note">Marque os bumps para ver o ticket subir.</span>
+      </div>
+    </div>
+    <div id="cards"></div>
+  </div>
+
+  <div class="tips" style="margin-top:8px">
+    <h2>📌 Como usar para vender mais</h2>
+    <ul>
+      <li><b>A ordem importa:</b> o 1º bump é o mais visto e o mais marcado. Coloquei o mais barato e mais ligado ao Kit primeiro (R$ 9,90 é decisão de 1 segundo).</li>
+      <li><b>Só a 1ª frase aparece</b> antes do "Ver mais". Por isso cada descrição começa com a promessa principal; o resto é para quem clica.</li>
+      <li><b>"De/por" só com preço real.</b> Se nunca vendeu pelo "de", use esse valor como preço normal fora do checkout.</li>
+      <li><b>Cronômetro:</b> se a ggcheckout tiver aquele timer que reinicia a cada visita, prefira desligar. Mãe que volta e vê o tempo "zerado de novo" desconfia e o Facebook pode reprovar.</li>
+      <li><b>Depois de ~50 vendas</b>, veja quantas % marcaram cada bump. Abaixo de 5%, troque ou tire: bump fraco só polui o checkout.</li>
+      <li>Se tiver poucos produtos, <b>3 bumps bons vendem mais que 5 médios</b>. Nesse caso, fique com os 3 primeiros.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+var B=[
+ {img:"bump-1-leitura-silabica.png",title:"📖 Primeiras Historinhas para Ler Sozinho",
+  desc:"Ele vai ler a 1ª historinha inteira sozinho! Textos curtinhos só com sílabas simples, feitos para a criança ler do começo ao fim e sentir o orgulho do \"eu consegui!\". Combina perfeitamente com o Kit: é a recompensa de cada fase concluída.",
+  de:"18,90",por:"9,90",
+  why:"É a continuação natural da promessa da página (\"ler a historinha de dormir\"). Preço de impulso: a mãe marca sem pensar."},
+ {img:"bump-2-grafismo-fonetico.png",title:"✏️ Kit Grafismo Fonético",
+  desc:"Mãozinha pronta para escrever as letras. Traçados divertidos que unem som e movimento: firmam o lápis, melhoram a letra e fazem a escrita evoluir junto com a leitura.",
+  de:"21,90",por:"12,90",
+  why:"Resolve a próxima preocupação da mãe (\"e a letra dele?\"). Muito ligado à alfabetização, alta chance de aceite."},
+ {img:"bump-3-interpretacao-texto.png",title:"💭 Ler e Entender: +267 Atividades de Interpretação",
+  desc:"Não basta ler, tem que entender o que leu. Atividades de interpretação e produção de texto que preparam seu filho para as provas da escola e fazem a leitura virar compreensão de verdade.",
+  de:"24,90",por:"14,90",
+  why:"Fala com a dor \"notas caindo\" da página. Ótimo para mães de crianças de 6 a 8 anos."},
+ {img:"bump-4-matematica.png",title:"🔢 Coleção Matemática Divertida",
+  desc:"A mesma diversão do Kit, agora com números. Contar, somar e resolver problemas com personagens e desafios que a criança pede para fazer. Complete a base escolar dele de uma vez.",
+  de:"26,90",por:"17,90",
+  why:"Menos ligado à leitura, mas é a 2ª maior preocupação escolar. Fica mais abaixo por ser o mais caro."},
+ {img:"bump-5-atividades-adaptadas.png",title:"🧩 Atividades Adaptadas para Inclusão",
+  desc:"Para crianças com TEA, TDAH ou que precisam de mais calma. Visual limpo, uma instrução por vez e passo a passo, para aprender no ritmo dela, sem frustração.",
+  de:"19,90",por:"14,90",
+  why:"Nicho: poucas mães precisam, mas quem precisa compra na hora. Por ser específico, fica por último."}
+];
+function n(v){return +v.replace(",",".")}
+function brl(v){return "R$ "+v.toFixed(2).replace(".",",")}
+var sim=document.getElementById("sim"),cards=document.getElementById("cards"),tot=document.getElementById("tot");
+B.forEach(function(b,i){
+  var el=document.createElement("label");el.className="bump";
+  el.innerHTML='<input type="checkbox"><img src="'+b.img+'" alt=""><div><div class="t">'+b.title.replace(/^\S+\s/,"")+'</div><div class="d">🎁 <b>'+b.desc.split(/[.!]/)[0]+'</b>…</div><div class="row"><div><span class="old">R$ '+b.de+'</span><span class="new">R$ '+b.por+'</span></div><span class="cta">Quero comprar também!</span></div></div>';
+  el.querySelector("input").addEventListener("change",function(e){el.classList.toggle("on",e.target.checked);calc()});
+  sim.appendChild(el);
+  var c=document.createElement("div");c.className="card";
+  c.innerHTML='<header><img src="'+b.img+'" alt=""><div><span class="pos">BUMP '+(i+1)+'</span><h2>'+b.title+'</h2></div></header>'+
+   f("Título",b.title)+f("Descrição",b.desc)+'<div class="prices">'+f("Preço \"de\"","R$ "+b.de)+f("Preço \"por\"","R$ "+b.por)+'</div>'+
+   f("Imagem","order-bumps/"+b.img)+'<div class="why">💡 <b>Por que aqui:</b> '+b.why+'</div>';
+  cards.appendChild(c);
+});
+function f(l,v){return '<div class="f"><label>'+l+'<button class="copy" type="button">copiar</button></label><div class="val">'+v.replace(/</g,"&lt;")+'</div></div>'}
+cards.addEventListener("click",function(e){var b=e.target.closest(".copy");if(!b)return;var v=b.closest(".f").querySelector(".val").textContent;
+  function ok(){b.textContent="copiado ✓";setTimeout(function(){b.textContent="copiar"},1400)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(v).then(ok,fallback)}else fallback();
+  function fallback(){var t=document.createElement("textarea");t.value=v;document.body.appendChild(t);t.select();try{document.execCommand("copy");ok()}catch(x){}t.remove()}
+});
+function calc(){var s=29.9;sim.querySelectorAll(".bump").forEach(function(el,i){if(el.querySelector("input").checked)s+=n(B[i].por)});tot.textContent=brl(s)}
+</script>
+</body>
+</html>

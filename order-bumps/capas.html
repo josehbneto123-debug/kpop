@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Capas dos order bumps</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap">
+<style>
+/* Abra com #1 a #5 no fim do endereço para ver/capturar cada capa (600x600). */
+*{box-sizing:border-box;margin:0}
+html,body{width:600px;height:600px;overflow:hidden;background:#fff}
+.cover{display:none;width:600px;height:600px;position:relative;overflow:hidden;font-family:Fredoka,Nunito,sans-serif;color:#2a2226}
+.cover.on{display:block}
+.bgdots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.55) 3px,transparent 3.5px);background-size:34px 34px}
+.book{position:absolute;left:62px;top:52px;width:476px;height:496px;border-radius:34px;background:#fff;box-shadow:0 26px 50px -18px rgba(0,0,0,.35),inset 0 0 0 10px rgba(255,255,255,.9);transform:rotate(-3deg);overflow:hidden}
+.spine{position:absolute;left:0;top:0;bottom:0;width:30px;background:repeating-linear-gradient(180deg,#d9d2d6 0 10px,transparent 10px 26px)}
+.top{position:absolute;left:30px;right:0;top:0;height:132px;display:flex;align-items:center;justify-content:center;padding:0 28px;text-align:center}
+.top h1{font-size:54px;line-height:.98;font-weight:700;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.18)}
+.art{position:absolute;left:30px;right:0;top:132px;bottom:92px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:120px;line-height:1}
+.art .sm{font-size:78px}
+.bottom{position:absolute;left:30px;right:0;bottom:0;height:92px;display:flex;align-items:center;justify-content:center;font-family:Nunito,sans-serif;font-weight:900;font-size:30px;letter-spacing:.02em}
+.tag{position:absolute;right:26px;top:24px;z-index:3;background:#ffd23f;color:#2a2226;font-family:Nunito,sans-serif;font-weight:900;font-size:26px;padding:12px 18px;border-radius:18px;transform:rotate(8deg);box-shadow:0 10px 20px -8px rgba(0,0,0,.35)}
+.chip{display:inline-block;padding:8px 16px;border-radius:14px;background:#fff;margin:0 4px;font-family:Fredoka,sans-serif;font-weight:700;font-size:44px;box-shadow:0 6px 0 rgba(0,0,0,.08)}
+</style>
+</head>
+<body>
+
+<!-- 1. Livro de Leitura Silábica -->
+<div class="cover" id="c1" style="background:#ffc7d4">
+  <div class="bgdots"></div><span class="tag">10 historinhas</span>
+  <div class="book"><div class="spine"></div>
+    <div class="top" style="background:#ff5d87"><h1>Primeiras Historinhas</h1></div>
+    <div class="art" style="background:#fff3c4"><span>📖</span><span class="sm">🐷</span></div>
+    <div class="bottom" style="background:#ffe1e6;color:#b8264a"><span class="chip" style="color:#ff5d87">PA</span><span class="chip" style="color:#b98cff">TO</span></div>
+  </div>
+</div>
+
+<!-- 2. Grafismo Fonético -->
+<div class="cover" id="c2" style="background:#cdeedd">
+  <div class="bgdots"></div><span class="tag">+120 traçados</span>
+  <div class="book"><div class="spine"></div>
+    <div class="top" style="background:#1f9d74"><h1>Grafismo Fonético</h1></div>
+    <div class="art" style="background:#eafaf2"><span>✏️</span><span class="sm">〰️</span></div>
+    <div class="bottom" style="background:#d9f5e8;color:#13704f">MÃOZINHA PRONTA</div>
+  </div>
+</div>
+
+<!-- 3. Interpretação de Texto -->
+<div class="cover" id="c3" style="background:#d6e9ff">
+  <div class="bgdots"></div><span class="tag">+267 atividades</span>
+  <div class="book"><div class="spine"></div>
+    <div class="top" style="background:#3d8ee6"><h1>Ler e Entender</h1></div>
+    <div class="art" style="background:#eef6ff"><span>💭</span><span class="sm">📝</span></div>
+    <div class="bottom" style="background:#d8eeff;color:#1d5fa8">INTERPRETAÇÃO</div>
+  </div>
+</div>
+
+<!-- 4. Matemática -->
+<div class="cover" id="c4" style="background:#ffe0b8">
+  <div class="bgdots"></div><span class="tag">0 a 100</span>
+  <div class="book"><div class="spine"></div>
+    <div class="top" style="background:#f08a24"><h1>Matemática Divertida</h1></div>
+    <div class="art" style="background:#fff6e8"><span class="chip" style="font-size:70px;color:#f08a24">1+2</span><span>🍎</span></div>
+    <div class="bottom" style="background:#ffe9cf;color:#a85a0c">CONTAR BRINCANDO</div>
+  </div>
+</div>
+
+<!-- 5. Inclusão -->
+<div class="cover" id="c5" style="background:#e3d6fa">
+  <div class="bgdots"></div><span class="tag">passo a passo</span>
+  <div class="book"><div class="spine"></div>
+    <div class="top" style="background:#8b5fd6"><h1>Atividades Adaptadas</h1></div>
+    <div class="art" style="background:#f5efff"><span>🧩</span><span class="sm">💜</span></div>
+    <div class="bottom" style="background:#efe3fd;color:#5b3a8c">TEA · TDAH · INCLUSÃO</div>
+  </div>
+</div>
+
+<script>
+function show(){var n=(location.hash||"#1").slice(1);document.querySelectorAll(".cover").forEach(function(c){c.classList.toggle("on",c.id==="c"+n)})}
+addEventListener("hashchange",show);show();
+</script>
+</body>
+</html>
